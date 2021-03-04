@@ -1,0 +1,39 @@
+.rating_div {
+  padding-top: 12px;
+}
+.icon_div {
+  padding: 10px;
+  position: relative;
+  top: 5px;
+}
+.mat-icon {
+  color: #ffd740;
+}
+.details {
+  padding-top: 10px;
+}
+.details label {
+  margin-bottom: 0;
+}
+.btn_div {
+  padding-bottom: 15px;
+  padding-top: 10px;
+  .mat-raised-button {
+    min-width: 110px;
+    font-size: 12px;
+  }
+  .mat-raised-button:last-child {
+    margin-left: 20px;
+  }
+}
+.btn_container {
+  padding-bottom: 15px;
+  padding-top: 10px;
+  .mat-button {
+    padding-left: 0;
+  }
+}
+/* .mat-card{
+  box-shadow: none;
+  background: none;
+} */

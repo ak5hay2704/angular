@@ -1,0 +1,58 @@
+<form
+  class="example-form"
+  [formGroup]="searchForm"
+  (ngSubmit)="onSubmit()"
+  style="padding: 16px"
+>
+  <mat-form-field class="example-full-width">
+    <mat-label>Search in Library</mat-label>
+    <input
+      matInput
+      placeholder="Ex. RS Agarwal"
+      formControlName="searchInput"
+    />
+  </mat-form-field>
+  <button type="submit" [disabled]="!searchForm.valid" class="btn_submit">
+    <mat-icon class="search_icon">search</mat-icon>
+  </button>
+</form>
+
+<div class="container" *ngIf="showCards">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div
+      fxFlex="50%"
+      fxFlex.xs="100%"
+      fxFlex.sm="100%"
+      *ngFor="let card of result; trackBy: trackByBookId"
+      class="card-container"
+    >
+      <mat-card class="main-card" (click)="showDetails(card)">
+        <mat-card-header>
+          <mat-card-title>{{ card?.volumeInfo?.title }}</mat-card-title>
+          <mat-card-subtitle>{{
+            card?.volumeInfo?.subtitle
+          }}</mat-card-subtitle>
+          <img
+            mat-card-sm-image
+            class="card_image"
+            *ngIf="!!card?.volumeInfo?.imageLinks?.smallThumbnail"
+            src="{{ card.volumeInfo.imageLinks.smallThumbnail }}"
+            alt=""
+          />
+        </mat-card-header>
+        <mat-card-content>
+          <p style="padding-top: 10px">
+            {{ transformDesc(card?.volumeInfo?.description) }}
+          </p>
+        </mat-card-content>
+        <mat-card-footer>
+          <label
+            style="margin-bottom: 0.25rem; font-weight: 500; font-size: 13px"
+            >Written By:</label
+          >
+          <p style="font-size: 13px">{{ card?.volumeInfo?.authors[0] }}</p>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="container">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%" class="card-container">
+      <mat-card class="main-card" *ngIf="selectedBook">
+        <mat-card-header>
+          <mat-card-title>{{ selectedBook?.volumeInfo?.title }}</mat-card-title>
+          <mat-card-subtitle>{{
+            selectedBook.volumeInfo.subtitle
+          }}</mat-card-subtitle>
+          <img
+            mat-card-sm-image
+            class="card_image"
+            src="{{ selectedBook?.volumeInfo?.imageLinks?.smallThumbnail }}"
+            alt=""
+          />
+        </mat-card-header>
+        <mat-card-content>
+          <div class="rating_div" *ngIf="selectedBook?.volumeInfo?.averageRating">
+            <label
+              style="margin-bottom: 0.25rem; font-weight: 500; font-size: 13px"
+              >Rating:</label
+            >
+            <span class="icon_div">
+              <mat-icon
+                [color]="accent"
+                *ngFor="let ratingId of ratingArr; index as i"
+                [id]="'star_' + i"
+                style="font-size: 21px"
+              >
+                {{ showIcon(i, selectedBook?.volumeInfo?.averageRating) }}
+              </mat-icon>
+            </span>
+          </div>
+          <div class="details">
+            <div class="publisher_div">
+              <label style="font-weight: 500; font-size: 13px"
+                >Publisher:</label
+              >
+              <label style="font-size: 13px; padding-left: 16px" class="value">
+                {{ selectedBook?.volumeInfo?.publisher }}
+              </label>
+            </div>
+            <div class="pagecount_div">
+              <label style="font-weight: 500; font-size: 13px"
+                >Page Count:</label
+              >
+              <label style="font-size: 13px; padding-left: 4px" class="value">
+                {{ selectedBook?.volumeInfo?.pageCount }}
+              </label>
+            </div>
+            <div class="lang_div">
+              <label style="font-weight: 500; font-size: 13px">Language:</label>
+              <label style="font-size: 13px; padding-left: 15px" class="value">
+                {{ selectedBook?.volumeInfo?.language }}
+              </label>
+            </div>
+          </div>
+          <p style="padding-top: 10px">
+            {{ selectedBook?.volumeInfo?.description }}
+          </p>
+        </mat-card-content>
+        <mat-card-footer>
+          <label
+            style="margin-bottom: 0.25rem; font-weight: 500; font-size: 13px"
+            *ngIf="!!selectedBook?.volumeInfo?.authors"
+            >Written By:</label
+          >
+          <p style="font-size: 13px" *ngIf="!!selectedBook?.volumeInfo?.authors">
+            {{ concatStr(selectedBook?.volumeInfo?.authors) }}
+          </p>
+          <div class="btn_div" *ngIf="!checkColItems(selectedBook)">
+            <button
+              mat-raised-button
+              color="primary"
+              *ngIf="!checkCart(selectedBook)"
+              (click)="addToCart(selectedBook)"
+            >
+              ADD TO CART
+            </button>
+            <button
+              mat-button
+              color="primary"
+              disabled
+              *ngIf="checkCart(selectedBook)"
+            >
+              ADDED TO CART
+            </button>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="navigateToBuy(selectedBook.id)"
+            >
+              BUY
+            </button>
+          </div>
+          <div class="btn_container" *ngIf="checkColItems(selectedBook)">
+            <button mat-button color="primary" disabled>ALREADY BOUGHT</button>
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  volume_endpoint: 'https://www.googleapis.com/books/v1/volumes'
 };
 
 /*

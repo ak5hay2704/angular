@@ -1,0 +1,63 @@
+.search_icon {
+  position: relative;
+  top: 10px;
+}
+.btn_submit {
+  background-color: white;
+  border: 0;
+  outline: 0;
+}
+button:enabled {
+  cursor: pointer;
+}
+.container {
+  padding: 16px;
+}
+
+.container > mat-card {
+  width: 200px;
+}
+
+::ng-deep {
+  .mat-card-header-text {
+    margin: 0px !important;
+    width: 85%;
+  }
+  .mat-card-footer {
+    margin: 0px !important;
+    position: relative;
+    bottom: -10px;
+  }
+  .mat-card-subtitle {
+    max-width: 94%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  .mat-card-title {
+    max-width: 94%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 18px !important;
+  }
+  .mat-progress-spinner {
+    bottom: 60px;
+    left: 25%;
+  }
+}
+
+.card-container {
+  min-height: 150px !important;
+  cursor: pointer;
+}
+
+.main-card {
+  min-height: 230px !important;
+}
+/* .card_image {
+  position: absolute;
+  right: 0px;
+  padding-right: 16px;
+} */

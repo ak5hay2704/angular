@@ -1,0 +1,23 @@
+.btn_div {
+  padding-bottom: 15px;
+  padding-top: 10px;
+}
+.mat-icon {
+  float: right;
+  position: relative;
+  bottom: 58%;
+  color: #673ab7;
+  cursor: pointer;
+}
+.mat-card-footer {
+  height: 54px;
+}
+.container {
+  max-width: 70%;
+}
+.cart_overlay {
+  text-align: center;
+  position: relative;
+  top: calc(50vh - 64px);
+  color: lightgray;
+}

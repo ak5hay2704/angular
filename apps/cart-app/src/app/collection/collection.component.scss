@@ -1,0 +1,19 @@
+.cart_overlay {
+  text-align: center;
+  position: relative;
+  top: calc(50vh - 64px);
+  color: lightgray;
+}
+.container {
+  width: 75%;
+}
+.details {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.details label {
+  margin-bottom: 0;
+}
+.heading {
+  margin-bottom: 10px;
+}

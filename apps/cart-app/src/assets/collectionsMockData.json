@@ -1,0 +1,180 @@
+[
+  {
+    "kind": "books#volume",
+    "id": "PXa2bby0oQ0C",
+    "etag": "L0BY9y0xb2Q",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/PXa2bby0oQ0C",
+    "volumeInfo": {
+      "title": "JavaScript: The Good Parts",
+      "subtitle": "The Good Parts",
+      "authors": ["Douglas Crockford"],
+      "publisher": "\"O'Reilly Media, Inc.\"",
+      "publishedDate": "2008-05-08",
+      "description": "Most programming languages contain good and bad parts, but JavaScript has more than its share of the bad, having been developed and released in a hurry before it could be refined. This authoritative book scrapes away these bad features to reveal a subset of JavaScript that's more reliable, readable, and maintainable than the language as a whole—a subset you can use to create truly extensible and efficient code. Considered the JavaScript expert by many people in the development community, author Douglas Crockford identifies the abundance of good ideas that make JavaScript an outstanding object-oriented programming language-ideas such as functions, loose typing, dynamic objects, and an expressive object literal notation. Unfortunately, these good ideas are mixed in with bad and downright awful ideas, like a programming model based on global variables. When Java applets failed, JavaScript became the language of the Web by default, making its popularity almost completely independent of its qualities as a programming language. In JavaScript: The Good Parts, Crockford finally digs through the steaming pile of good intentions and blunders to give you a detailed look at all the genuinely elegant parts of JavaScript, including: Syntax Objects Functions Inheritance Arrays Regular expressions Methods Style Beautiful features The real beauty? As you move ahead with the subset of JavaScript that this book presents, you'll also sidestep the need to unlearn all the bad parts. Of course, if you want to find out more about the bad parts and how to use them badly, simply consult any other JavaScript book. With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must.",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9780596554873"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "0596554877"
+        }
+      ],
+      "readingModes": {
+        "text": true,
+        "image": true
+      },
+      "pageCount": 172,
+      "printType": "BOOK",
+      "categories": ["Computers"],
+      "averageRating": 4.5,
+      "ratingsCount": 46,
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": true,
+      "contentVersion": "0.6.6.0.preview.3",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=PXa2bby0oQ0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=PXa2bby0oQ0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "en",
+      "previewLink": "http://books.google.com/books?id=PXa2bby0oQ0C&printsec=frontcover&dq=javascript&hl=&cd=1&source=gbs_api",
+      "infoLink": "https://play.google.com/store/books/details?id=PXa2bby0oQ0C&source=gbs_api",
+      "canonicalVolumeLink": "https://play.google.com/store/books/details?id=PXa2bby0oQ0C"
+    },
+    "saleInfo": {
+      "country": "US",
+      "saleability": "FOR_SALE",
+      "isEbook": true,
+      "listPrice": {
+        "amount": 23.99,
+        "currencyCode": "USD"
+      },
+      "retailPrice": {
+        "amount": 13.6,
+        "currencyCode": "USD"
+      },
+      "buyLink": "https://play.google.com/store/books/details?id=PXa2bby0oQ0C&rdid=book-PXa2bby0oQ0C&rdot=1&source=gbs_api",
+      "offers": [
+        {
+          "finskyOfferType": 1,
+          "listPrice": {
+            "amountInMicros": 23990000,
+            "currencyCode": "USD"
+          },
+          "retailPrice": {
+            "amountInMicros": 13600000,
+            "currencyCode": "USD"
+          },
+          "giftable": true
+        }
+      ]
+    },
+    "accessInfo": {
+      "country": "US",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": true
+      },
+      "pdf": {
+        "isAvailable": true
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=PXa2bby0oQ0C&hl=&printsec=frontcover&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "If you develop sites or applications for the Web, this book is an absolute must."
+    },
+    "userDetails": {
+      "fName": "Test",
+      "email": "test12345@gmail.com",
+      "number": "9876543210",
+      "address": "Test City, Test-444444"
+    }
+  },
+  {
+    "kind": "books#volume",
+    "id": "p1v6DwAAQBAJ",
+    "etag": "EB3Kf1eW64I",
+    "selfLink": "https://www.googleapis.com/books/v1/volumes/p1v6DwAAQBAJ",
+    "volumeInfo": {
+      "title": "Eloquent JavaScript",
+      "subtitle": "A Modern Introduction to Programming",
+      "authors": ["Marijn Haverbeke"],
+      "publishedDate": "2018-11-15",
+      "description": "Diving deep into the JavaScript language to show you how to write beautiful, effective code, this book uses extensive examples and immerses you in code from the start, while exercises and full-chapter projects give you hands-on experience with writing your own programs. --",
+      "industryIdentifiers": [
+        {
+          "type": "ISBN_13",
+          "identifier": "9781593279509"
+        },
+        {
+          "type": "ISBN_10",
+          "identifier": "1593279507"
+        }
+      ],
+      "readingModes": {
+        "text": false,
+        "image": false
+      },
+      "pageCount": 450,
+      "printType": "BOOK",
+      "categories": ["Computers"],
+      "averageRating": 3.5,
+      "ratingsCount": 2,
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": false,
+      "contentVersion": "preview-1.0.0",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=p1v6DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=p1v6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "en",
+      "previewLink": "http://books.google.com/books?id=p1v6DwAAQBAJ&pg=PP1&dq=javascript&hl=&cd=4&source=gbs_api",
+      "infoLink": "http://books.google.com/books?id=p1v6DwAAQBAJ&dq=javascript&hl=&source=gbs_api",
+      "canonicalVolumeLink": "https://books.google.com/books/about/Eloquent_JavaScript.html?hl=&id=p1v6DwAAQBAJ"
+    },
+    "saleInfo": {
+      "country": "US",
+      "saleability": "NOT_FOR_SALE",
+      "isEbook": false
+    },
+    "accessInfo": {
+      "country": "US",
+      "viewability": "PARTIAL",
+      "embeddable": true,
+      "publicDomain": false,
+      "textToSpeechPermission": "ALLOWED",
+      "epub": {
+        "isAvailable": false
+      },
+      "pdf": {
+        "isAvailable": false
+      },
+      "webReaderLink": "http://play.google.com/books/reader?id=p1v6DwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
+      "accessViewStatus": "SAMPLE",
+      "quoteSharingAllowed": false
+    },
+    "searchInfo": {
+      "textSnippet": "Diving deep into the JavaScript language to show you how to write beautiful, effective code, this book uses extensive examples and immerses you in code from the start, while exercises and full-chapter projects give you hands-on experience ..."
+    },
+    "userDetails": {
+      "fName": "Test",
+      "email": "test12345@gmail.com",
+      "number": "9876543210",
+      "address": "Test City, Test-444444"
+    }
+  }
+]

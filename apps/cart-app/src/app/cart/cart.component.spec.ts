@@ -1,4 +1,5 @@
 import { LayoutModule } from '@angular/cdk/layout';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -52,6 +53,7 @@ describe('CartComponent', () => {
         MatInputModule,
         MatCardModule,
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
@@ -66,12 +68,15 @@ describe('CartComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be able to delete item from cart', inject([SearchFacade], (facade: SearchFacade) => {
-    const spy = spyOn(facade, 'removeFromCart');
-    component.deleteCartItem({});
-    expect(spy).toHaveBeenCalled();
-    expect(component).toBeTruthy();
-  }));
+  it('should be able to delete item from cart', inject(
+    [SearchFacade],
+    (facade: SearchFacade) => {
+      const spy = spyOn(facade, 'removeFromCart');
+      component.deleteCartItem('abcd1234');
+      expect(spy).toHaveBeenCalled();
+      expect(component).toBeTruthy();
+    }
+  ));
 
   it('should be able to proceed to buy items from cart', inject(
     [Router],

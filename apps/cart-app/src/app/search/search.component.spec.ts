@@ -1,12 +1,6 @@
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpResponse,
-} from '@angular/common/http';
 import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Observable, of, throwError } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { SearchComponent } from './search.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { SearchFacade } from '../../store/search.facade';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
+import { SpinnerService } from '../services/spinner.service';
 const data = require('../../assets/searchItemsMockData.json');
 
 const facadeMock = {
@@ -28,8 +24,6 @@ const facadeMock = {
     return value;
   },
 };
-
-let httpClient: HttpClient;
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -48,8 +42,6 @@ describe('SearchComponent', () => {
         { provide: SearchFacade, useValue: facadeMock },
       ],
       imports: [
-        HttpClientModule,
-        HttpClientTestingModule,
         NoopAnimationsModule,
         LayoutModule,
         MatButtonModule,
@@ -62,54 +54,34 @@ describe('SearchComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
       ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    httpClient = TestBed.inject(HttpClient);
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should be able to load search page', () => {
-    const spy = spyOn(httpClient, 'get');
-    spy.and.returnValue(
-      of(<HttpResponse<any>>{
-        body: {},
-      })
-    );
-    expect(spy).not.toHaveBeenCalled();
+  it('should be able to load search page', ()=>{
+      expect(component).toBeTruthy();
   });
 
-  it('should be able to submit form and get the search results', () => {
-    const spy = spyOn(httpClient, 'get');
-    spy.and.returnValue(
-      of({
-        items: data,
-      })
-    );
-    component.onSubmit();
-    expect(spy).toHaveBeenCalled();
-  });
-
-  it('should return error if same is returned from books api', () => {
-    const spy = spyOn(httpClient, 'get');
-    spy.and.returnValue(throwError(new Error('invalid scope')));
-    component.onSubmit();
-    expect(spy).toHaveBeenCalled();
-  });
+  it('should be able to submit form and call facade for dispatching load action', inject(
+    [SpinnerService],
+    (spinner: SpinnerService) => {
+      const spy = spyOn(spinner, 'show');
+      component.onSubmit();
+      expect(spy).toHaveBeenCalled();
+    }
+  ));
 
   it('should be able to visit book details page', inject(
     [Router],
     (mockRouter: Router) => {
-      spyOn(httpClient, 'get').and.returnValue(
-        of({
-          items: data,
-        })
-      );
       const spy = spyOn(mockRouter, 'navigate').and.stub();
-      component.showDetails({ id: 'abcd1234' });
+      component.showDetails('abcd1234');
       expect(spy).toHaveBeenCalled();
     }
   ));

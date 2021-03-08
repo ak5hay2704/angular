@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClientService } from '../services/http-client.service';
 import { SpinnerService } from '../services/spinner.service';
 import { Router } from '@angular/router';
 import { SearchFacade } from '../../store/search.facade';
@@ -19,7 +18,6 @@ export class SearchComponent implements OnInit {
   });
 
   constructor(
-    private http: HttpClientService,
     private spinnerService: SpinnerService,
     private facade: SearchFacade,
     private router: Router
@@ -33,39 +31,18 @@ export class SearchComponent implements OnInit {
         this.result = data;
         this.showCards = true;
       }
+      this.spinnerService.hide();
     });
   }
 
   onSubmit() {
     this.spinnerService.show();
     const searchKey = this.searchForm.value;
-    this.http.get(searchKey.searchInput).subscribe(
-      (data) => {
-        this.spinnerService.hide();
-        /* istanbul ignore else */
-        if (!!data && !!data.items) {
-          const payload = {
-            data: data.items,
-            key: searchKey.searchInput,
-          };
-          this.facade.loadAll(payload);
-        }
-      },
-      (error) => {
-        this.spinnerService.hide();
-        console.log(error);
-      }
-    );
+    this.facade.loadAll(searchKey.searchInput);
   }
 
-  transformDesc(str: String) {
-    return !!str && !!str.length && str.length > 80
-      ? str.substr(0, 120) + '...'
-      : str;
-  }
-
-  showDetails(cardObj: any) {
-    this.router.navigate(['search', cardObj.id]);
+  showDetails(id: string) {
+    this.router.navigate(['search', id]);
   }
 
   trackByBookId(index: number, cardObj: any) {

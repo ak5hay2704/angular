@@ -17,14 +17,8 @@ export class CartComponent implements OnInit {
     });
   }
 
-  transformDesc(str: String) {
-    return !!str && !!str.length && str.length > 200
-      ? str.substr(0, 200) + '...'
-      : str;
-  }
-
-  deleteCartItem(cardObj: any) {
-    this.facade.removeFromCart(cardObj.id);
+  deleteCartItem(id: string) {
+    this.facade.removeFromCart(id);
   }
 
   navigateToBuy() {

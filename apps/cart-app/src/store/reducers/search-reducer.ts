@@ -5,6 +5,8 @@ import {
   ATTACH_BILLING_DETAILS,
   CHECKOUT_CART,
   LOAD_SEARCH_RESULTS,
+  LOAD_SEARCH_RESULTS_FAILURE,
+  LOAD_SEARCH_RESULTS_SUCCESS,
   REMOVE_FROM_CART,
 } from '../actions/search-actions';
 
@@ -17,6 +19,7 @@ export interface SearchReducerState {
   colSize: number;
   userDetails: any;
   recentSearches: Array<string>;
+  error: any;
 }
 
 const initialState: SearchReducerState = {
@@ -28,6 +31,7 @@ const initialState: SearchReducerState = {
   colSize: 0,
   userDetails: null,
   recentSearches: [],
+  error: null,
 };
 
 export function searchReducer(
@@ -39,12 +43,23 @@ export function searchReducer(
     updateColLength = 0;
   switch (action.type) {
     case LOAD_SEARCH_RESULTS:
+      return {
+        ...state,
+      };
+
+    case LOAD_SEARCH_RESULTS_SUCCESS:
       const recents = state.recentSearches.concat(action.payload.key);
       return {
         ...state,
         books: action.payload.data,
         searchString: action.payload.key,
         recentSearches: recents,
+      };
+
+    case LOAD_SEARCH_RESULTS_FAILURE:
+      return {
+        ...state,
+        error: action.payload.error,
       };
     case ADD_SELECTED_TO_CART:
       updatedCart = state.cartData.concat(action.payload);

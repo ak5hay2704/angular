@@ -30,8 +30,28 @@ describe('Search Reducer', () => {
       undefined,
       new SearchActions.LoadSearchResultsAction({ data: [{ id: 'abcd1234' }] })
     );
+    expect(state.books).toBeFalsy();
+  });
+
+  it('should load the results data in store', () => {
+    const state = searchReducer(
+      undefined,
+      new SearchActions.LoadSearchResultsSuccessAction({
+        data: [{ id: 'abcd1234' }],
+      })
+    );
     expect(state.books).toBeTruthy();
     expect(state.books.length).toBe(1);
+  });
+
+  it('should load the results data in store', () => {
+    const state = searchReducer(
+      undefined,
+      new SearchActions.LoadSearchResultsFailureAction({
+        error: { error: 'invalid' },
+      })
+    );
+    expect(state.error).toBeTruthy();
   });
 
   it('should be able to add item to cart', () => {

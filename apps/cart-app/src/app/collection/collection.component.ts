@@ -17,12 +17,6 @@ export class CollectionComponent implements OnInit {
     });
   }
 
-  transformDesc(str: String) {
-    return !!str && !!str.length && str.length > 180
-      ? str.substr(0, 180) + '...'
-      : str;
-  }
-
   showDetails(cardObj: any) {
     this.router.navigate(['search', cardObj.id]);
   }

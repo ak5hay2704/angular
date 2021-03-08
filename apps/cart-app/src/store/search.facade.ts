@@ -13,8 +13,14 @@ export class SearchFacade {
 
   constructor(private store: Store) {}
 
-  loadAll(payload: any) {
-    this.store.dispatch(new SearchActions.LoadSearchResultsAction(payload));
+  loadAll(searchInput: string) {
+    this.store.dispatch(new SearchActions.LoadSearchResultsAction(searchInput));
+  }
+
+  loadSuccess(payLoad: any) {
+    this.store.dispatch(
+      new SearchActions.LoadSearchResultsSuccessAction(payLoad)
+    );
   }
 
   addToCart(obj: any) {

@@ -31,6 +31,8 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { BillingInfoComponent } from './billing-info/billing-info.component';
 import { rootReducer } from '../store/reducers';
 import { SearchFacade } from '../store/search.facade';
+import { BookComponent } from './book/book.component';
+import { effects } from '../store/effects';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { SearchFacade } from '../store/search.facade';
     CollectionComponent,
     BookDetailsComponent,
     BillingInfoComponent,
+    BookComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,7 @@ import { SearchFacade } from '../store/search.facade';
         strictStateImmutability: true,
       },
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(effects),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [SearchFacade],

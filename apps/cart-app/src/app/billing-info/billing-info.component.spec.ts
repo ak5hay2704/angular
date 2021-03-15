@@ -15,6 +15,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { BillingInfoComponent } from './billing-info.component';
 import { SearchFacade } from '../../store/search.facade';
+import { NGXLogger } from 'ngx-logger';
 const data = require('../../assets/searchItemsMockData.json');
 
 const facadeMock = {
@@ -39,6 +40,14 @@ const dialogMock = {
     };
   },
 };
+const Logger = {
+  debug: function (value) {
+    console.log(value);
+  },
+  error: function (value) {
+    console.log(value);
+  },
+};
 
 describe('BillingInfoComponent', () => {
   let component: BillingInfoComponent;
@@ -59,6 +68,7 @@ describe('BillingInfoComponent', () => {
           provide: MatDialog,
           useValue: dialogMock,
         },
+        { provide: NGXLogger, useValue: Logger },
       ],
       imports: [
         NoopAnimationsModule,

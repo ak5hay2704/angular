@@ -8,18 +8,28 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
 import { SearchFacade } from '../store/search.facade';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-const data = require('../assets/searchItemsMockData.json');
+import { NGXLogger } from 'ngx-logger';
+
+const Logger = {
+  debug: function () {
+    return console.log;
+  },
+  error: function () {
+    return console.log;
+  },
+};
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent, NavComponent],
-      providers: [{ provide: SearchFacade, useValue: {} }],
+      providers: [
+        { provide: SearchFacade, useValue: {} },
+        { provide: NGXLogger, useValue: Logger },
+      ],
       imports: [
         NoopAnimationsModule,
         LayoutModule,

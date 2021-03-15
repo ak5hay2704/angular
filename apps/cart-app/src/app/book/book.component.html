@@ -19,14 +19,16 @@
       }}
     </p>
   </mat-card-content>
-  <mat-card-footer>
+  <mat-card-footer [ngClass]="{'max-footer': showMaxFooter}">
     <label style="margin-bottom: 0.25rem; font-weight: 500; font-size: 13px"
       >Written By:</label
     >
     <p style="font-size: 13px">{{ card?.volumeInfo?.authors[0] }}</p>
     <div class="details" *ngIf="showDetailsSection">
       <div class="heading">
-        <label style="font-weight: 500; font-size: 13px">Billing Address</label>
+        <label style="font-weight: 500; font-size: 13px"
+          >Billing Address:</label
+        >
       </div>
       <div>
         <label style="font-weight: 500; font-size: 13px">Name:</label>

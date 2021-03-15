@@ -1,56 +1,73 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 import { SearchFacade } from '../../store/search.facade';
+import { NGXLogger } from 'ngx-logger';
+import { Book } from '../models/book.model';
 
 @Component({
   selector: 'angular-app-book-details',
   templateUrl: './book-details.component.html',
   styleUrls: ['./book-details.component.scss'],
 })
-export class BookDetailsComponent implements OnInit {
+export class BookDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private facade: SearchFacade,
-    private router: Router
+    private router: Router,
+    private logger: NGXLogger
   ) {}
+
   id: string;
-  selectedBook: any;
-  cartData = [];
-  colItems = [];
+  selectedBook: Book;
+  cartData: Array<Book> = [];
+  colItems: Array<Book> = [];
   ratingArr: Array<Number> = [1, 2, 3, 4, 5];
+  subs: Subscription[] = [];
 
   ngOnInit(): void {
-    this.route.params
-      .pipe(
-        concatMap((params) => {
-          this.id = params.id;
-          return this.facade.loaded$.pipe(
-            map((data) => {
-              if (!!data && data.length > 0) {
-                const flag = data.filter((item) => item.id === this.id);
-                if (!!flag && flag.length === 1) {
-                  return flag[0];
+    this.subs.push(
+      this.route.params
+        .pipe(
+          concatMap((params) => {
+            this.id = params.id;
+            return this.facade.loaded$.pipe(
+              map((data) => {
+                if (!!data && data.length > 0) {
+                  const flag = data.filter((item) => item.id === this.id);
+                  if (!!flag && flag.length === 1) {
+                    return flag[0];
+                  } else {
+                    this.router.navigate(['search']);
+                  }
                 } else {
                   this.router.navigate(['search']);
                 }
-              } else {
-                this.router.navigate(['search']);
-              }
-            })
-          );
-        })
-      )
-      .subscribe((data) => {
-        this.selectedBook = data;
-      });
+              })
+            );
+          })
+        )
+        .subscribe(
+          (data) => {
+            this.selectedBook = data;
+          },
+          (error) => {
+            this.logger.error('Error Occured with: ' + error);
+          }
+        )
+    );
 
-    this.facade.myCart$.subscribe((data) => {
-      this.cartData = data;
-    });
-    this.facade.myCollections$.subscribe((data) => {
-      this.colItems = data;
-    });
+    this.subs.push(
+      this.facade.myCart$.subscribe((data) => {
+        this.cartData = data;
+      })
+    );
+    this.subs.push(
+      this.facade.myCollections$.subscribe((data) => {
+        this.colItems = data;
+      })
+    );
   }
 
   showIcon(index: number, rating: Number) {
@@ -93,5 +110,9 @@ export class BookDetailsComponent implements OnInit {
 
   navigateToBuy(id) {
     this.router.navigate(['bill-desk', id]);
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach((s) => s.unsubscribe());
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Book, UserDetails } from '../app/models/book.model';
 import * as SearchActions from './actions/search-actions';
 import * as SearchReducers from './reducers';
 
@@ -17,13 +18,13 @@ export class SearchFacade {
     this.store.dispatch(new SearchActions.LoadSearchResultsAction(searchInput));
   }
 
-  loadSuccess(payLoad: any) {
+  loadSuccess(payLoad: Array<Book>) {
     this.store.dispatch(
       new SearchActions.LoadSearchResultsSuccessAction(payLoad)
     );
   }
 
-  addToCart(obj: any) {
+  addToCart(obj: Book) {
     this.store.dispatch(new SearchActions.AddSelectedToCartAction(obj));
   }
 
@@ -31,7 +32,7 @@ export class SearchFacade {
     this.store.dispatch(new SearchActions.RemoveFromCartAction(id));
   }
 
-  attachBillingInfo(info: any) {
+  attachBillingInfo(info: UserDetails) {
     this.store.dispatch(new SearchActions.AttachBillingInfo(info));
   }
 

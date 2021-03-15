@@ -9,9 +9,10 @@ export class BookComponent implements OnInit {
   @Input('bookObj') card: any;
   @Input('transForm') descLength: number;
   @Output() bookClick = new EventEmitter<any>();
-  @Input('showDeleteOption') showDeleteIcon: boolean = false;
+  @Input('showDeleteOption') showDeleteIcon = false;
   @Output() deleteItem = new EventEmitter<any>();
-  @Input('showUserDetails') showDetailsSection: boolean = false;
+  @Input('showUserDetails') showDetailsSection = false;
+  @Input('maxFooter') showMaxFooter = false;
 
   constructor() {}
 

@@ -13,11 +13,20 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { SearchFacade } from '../../store/search.facade';
 import { CollectionComponent } from './collection.component';
-
+import { NGXLogger } from 'ngx-logger';
 const collectionsMock = require('../../assets/collectionsMockData.json');
 
 const facadeMock = {
   myCollections$: of(collectionsMock),
+};
+
+const Logger = {
+  debug: function (value) {
+    console.log(value);
+  },
+  error: function (value) {
+    console.log(value);
+  },
 };
 
 describe('CollectionComponent', () => {
@@ -35,6 +44,7 @@ describe('CollectionComponent', () => {
             params: of({ id: 'abcd1234' }),
           },
         },
+        { provide: NGXLogger, useValue: Logger },
       ],
       imports: [
         NoopAnimationsModule,

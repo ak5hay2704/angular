@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
 import { SearchFacade } from '../../store/search.facade';
+import { NGXLogger } from 'ngx-logger';
+import { Book } from '../models/book.model';
 
 @Component({
   selector: 'angular-app-billing-info',
   templateUrl: './billing-info.component.html',
   styleUrls: ['./billing-info.component.scss'],
 })
-export class BillingInfoComponent implements OnInit {
+export class BillingInfoComponent implements OnInit, OnDestroy {
   id: any;
   billForm = new FormGroup({
     fName: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -25,20 +28,22 @@ export class BillingInfoComponent implements OnInit {
       Validators.minLength(10),
     ]),
   });
+  sub: Subscription;
   constructor(
     private route: ActivatedRoute,
     private facade: SearchFacade,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private logger: NGXLogger
   ) {}
 
   ngOnInit(): void {
-    this.route.params
+    this.sub = this.route.params
       .pipe(
         concatMap((params) => {
           this.id = params.id;
           return this.facade.loaded$.pipe(
-            map((data) => {
+            map((data: Array<Book>) => {
               if (!!data && data.length > 0) {
                 const flag = data.filter((item) => item.id === this.id);
                 if (!!flag && flag.length === 1) {
@@ -53,11 +58,16 @@ export class BillingInfoComponent implements OnInit {
           );
         })
       )
-      .subscribe((flag) => {
-        /* istanbul ignore else */
-        if (this.id !== 'checkoutCart' && !!flag)
-          this.router.navigate(['search']);
-      });
+      .subscribe(
+        (flag) => {
+          /* istanbul ignore else */
+          if (this.id !== 'checkoutCart' && !!flag)
+            this.router.navigate(['search']);
+        },
+        (error) => {
+          this.logger.error('Error Occured with: ' + error);
+        }
+      );
   }
 
   onSubmit() {
@@ -70,6 +80,10 @@ export class BillingInfoComponent implements OnInit {
         this.facade.addToCollection(this.id);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
 

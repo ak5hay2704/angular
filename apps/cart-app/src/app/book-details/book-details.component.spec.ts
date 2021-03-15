@@ -13,9 +13,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { SearchFacade } from '../../store/search.facade';
 import { BookDetailsComponent } from './book-details.component';
+import { NGXLogger } from 'ngx-logger';
 const data = require('../../assets/searchItemsMockData.json');
 const cartMock = require('../../assets/cartMockData.json');
 const collectionsMock = require('../../assets/collectionsMockData.json');
+
 
 const facadeMock = {
   loaded$: of(data, []),
@@ -23,6 +25,15 @@ const facadeMock = {
   myCollections$: of(collectionsMock),
   addToCart: function (items) {
     return items;
+  },
+};
+
+const Logger = {
+  debug: function (value) {
+    console.log(value);
+  },
+  error: function (value) {
+    console.log(value);
   },
 };
 
@@ -41,6 +52,7 @@ describe('BookDetailsComponent', () => {
             params: of({ id: '0oWMBAAAQBAJ' }, { id: 'abcd1234' }),
           },
         },
+        { provide: NGXLogger, useValue: Logger },
       ],
       imports: [
         NoopAnimationsModule,

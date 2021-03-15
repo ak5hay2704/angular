@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { BookComponent } from './book.component';
+import { tap } from 'rxjs/operators';
 
 describe('BookComponent', () => {
   let component: BookComponent;
@@ -14,7 +15,7 @@ describe('BookComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookComponent ],
+      declarations: [BookComponent],
       imports: [
         MatButtonModule,
         MatIconModule,
@@ -24,8 +25,7 @@ describe('BookComponent', () => {
         ReactiveFormsModule,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -36,5 +36,30 @@ describe('BookComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should be able to transform description', () => {
+    component['descLength'] = 5;
+    const str = component.transformDesc('testabcd12345');
+    expect(str.length).toBe(5 + 3);
+    expect(component).toBeTruthy();
+  });
+
+  it('should emit event when user clicks on a book', () => {
+    component.showDetails({ id: 'test12345' });
+    component['bookClick'].pipe(
+      tap((data) => {
+        expect(data).toBeTruthy();
+      })
+    );
+  });
+
+  it('should emit event when user wants to delete a book record from cart', () => {
+    component.deleteCartItem({ id: 'test12345' });
+    component['deleteItem'].pipe(
+      tap((data) => {
+        expect(data).toBeTruthy();
+      })
+    );
   });
 });

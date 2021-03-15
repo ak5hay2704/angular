@@ -16,12 +16,22 @@ import { MatCardModule } from '@angular/material/card';
 import { SearchFacade } from '../../store/search.facade';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 import { SpinnerService } from '../services/spinner.service';
+import { NGXLogger } from 'ngx-logger';
 const data = require('../../assets/searchItemsMockData.json');
 
 const facadeMock = {
   loaded$: of(data),
   loadAll: function (value) {
     return value;
+  },
+};
+
+const Logger = {
+  debug: function (value) {
+    console.log(value);
+  },
+  error: function (value) {
+    console.log(value);
   },
 };
 
@@ -40,6 +50,7 @@ describe('SearchComponent', () => {
           },
         },
         { provide: SearchFacade, useValue: facadeMock },
+        { provide: NGXLogger, useValue: Logger },
       ],
       imports: [
         NoopAnimationsModule,
@@ -64,8 +75,8 @@ describe('SearchComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should be able to load search page', ()=>{
-      expect(component).toBeTruthy();
+  it('should be able to load search page', () => {
+    expect(component).toBeTruthy();
   });
 
   it('should be able to submit form and call facade for dispatching load action', inject(

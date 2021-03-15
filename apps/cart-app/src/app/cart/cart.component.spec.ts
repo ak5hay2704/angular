@@ -15,12 +15,22 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { SearchFacade } from '../../store/search.facade';
 import { CartComponent } from './cart.component';
+import { NGXLogger } from 'ngx-logger';
 const cartMock = require('../../assets/cartMockData.json');
 
 const facadeMock = {
   myCart$: of(cartMock),
   removeFromCart: function (id) {
     return id;
+  },
+};
+
+const Logger = {
+  debug: function (value) {
+    console.log(value);
+  },
+  error: function (value) {
+    console.log(value);
   },
 };
 
@@ -39,6 +49,7 @@ describe('CartComponent', () => {
             params: of({ id: 'abcd1234' }),
           },
         },
+        { provide: NGXLogger, useValue: Logger },
       ],
       imports: [
         NoopAnimationsModule,

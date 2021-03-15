@@ -1,3 +1,4 @@
+import { Book } from '../../app/models/book.model';
 import { Action } from '../actions';
 import {
   ADD_SELECTED_TO_CART,
@@ -11,11 +12,11 @@ import {
 } from '../actions/search-actions';
 
 export interface SearchReducerState {
-  books: any;
+  books: Array<Book>;
   searchString: string;
   cartSize: number;
-  cartData: Array<any>;
-  collections: Array<any>;
+  cartData: Array<Book>;
+  collections: Array<Book>;
   colSize: number;
   userDetails: any;
   recentSearches: Array<string>;

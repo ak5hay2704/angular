@@ -30,11 +30,11 @@ export class CollectionComponent implements OnInit, OnDestroy {
     );
   }
 
-  showDetails(cardObj: any) {
+  showDetails(cardObj: Book) {
     this.router.navigate(['search', cardObj.id]);
   }
 
-  trackByBookId(index: number, cardObj: any) {
+  trackByBookId(index: number, cardObj: Book) {
     return cardObj.id;
   }
 

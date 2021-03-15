@@ -1,3 +1,5 @@
+import { Book, UserDetails } from '../../app/models/book.model';
+
 export const LOAD_SEARCH_RESULTS = 'LOAD_SEARCH_RESULTS';
 export const LOAD_SEARCH_RESULTS_SUCCESS = 'LOAD_SEARCH_RESULTS_SUCCESS';
 export const LOAD_SEARCH_RESULTS_FAILURE = 'LOAD_SEARCH_RESULTS_FAILURE';
@@ -23,12 +25,12 @@ export class LoadSearchResultsFailureAction {
 }
 export class AddSelectedToCartAction {
   readonly type = ADD_SELECTED_TO_CART;
-  constructor(public payload: any) {}
+  constructor(public payload: Book) {}
 }
 
 export class RemoveFromCartAction {
   readonly type = REMOVE_FROM_CART;
-  constructor(public payload: any) {}
+  constructor(public payload: string) {}
 }
 
 export class AddSelectedToCollections {
@@ -43,5 +45,5 @@ export class CheckoutCart {
 
 export class AttachBillingInfo {
   readonly type = ATTACH_BILLING_DETAILS;
-  constructor(public payload: any) {}
+  constructor(public payload: UserDetails) {}
 }

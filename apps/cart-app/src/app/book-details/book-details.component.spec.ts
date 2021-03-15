@@ -17,7 +17,7 @@ import { NGXLogger } from 'ngx-logger';
 const data = require('../../assets/searchItemsMockData.json');
 const cartMock = require('../../assets/cartMockData.json');
 const collectionsMock = require('../../assets/collectionsMockData.json');
-
+const bookMock = require('../../assets/bookMock.json');
 
 const facadeMock = {
   loaded$: of(data, []),
@@ -93,17 +93,20 @@ describe('BookDetailsComponent', () => {
     [Router],
     (mockRouter: Router) => {
       const spy = spyOn(mockRouter, 'navigate').and.stub();
-      component.navigateToBuy({ id: 'abcd1234' });
+      component.navigateToBuy('abcd1234');
       expect(spy).toHaveBeenCalled();
     }
   ));
 
-  it('should be able to add to cart', inject([SearchFacade], (facade: SearchFacade) => {
-    const spy = spyOn(facade, 'addToCart');
-    component.addToCart({ id: 'abcd1234' });
-    expect(spy).toHaveBeenCalled();
-    expect(component).toBeTruthy();
-  }));
+  it('should be able to add to cart', inject(
+    [SearchFacade],
+    (facade: SearchFacade) => {
+      const spy = spyOn(facade, 'addToCart');
+      component.addToCart(bookMock);
+      expect(spy).toHaveBeenCalled();
+      expect(component).toBeTruthy();
+    }
+  ));
 
   it('should be able to show data properly on authors section', () => {
     const str = component.concatStr(['test', '12345']);
@@ -132,16 +135,16 @@ describe('BookDetailsComponent', () => {
   });
 
   it('should be able to check cart items already added', () => {
-    const flag = component.checkCart({ id: 'abcd1234' });
+    const flag = component.checkCart(bookMock);
     expect(component.cartData.length).toBeGreaterThan(0);
-    expect(flag).toBe(false);
+    expect(flag).toBe(true);
     expect(component).toBeTruthy();
   });
 
   it('should be able to check my collection items', () => {
-    const flag = component.checkColItems({ id: 'abcd1234' });
+    const flag = component.checkColItems(bookMock);
     expect(component.colItems.length).toBeGreaterThan(0);
-    expect(flag).toBe(false);
+    expect(flag).toBe(true);
     expect(component).toBeTruthy();
   });
 });

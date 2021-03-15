@@ -1,4 +1,4 @@
-import { Book } from '../../app/models/book.model';
+import { Book, UserDetails } from '../../app/models/book.model';
 import { Action } from '../actions';
 import {
   ADD_SELECTED_TO_CART,
@@ -18,7 +18,7 @@ export interface SearchReducerState {
   cartData: Array<Book>;
   collections: Array<Book>;
   colSize: number;
-  userDetails: any;
+  userDetails: UserDetails;
   recentSearches: Array<string>;
   error: any;
 }
@@ -87,7 +87,7 @@ export function searchReducer(
       return {
         ...state,
         collections: state.collections.concat(result),
-        userDetails: {},
+        userDetails: null,
         colSize: updateColLength,
       };
     case CHECKOUT_CART:
@@ -103,7 +103,7 @@ export function searchReducer(
         cartData: [],
         cartSize: 0,
         colSize: updateColLength,
-        userDetails: {},
+        userDetails: null,
       };
     case ATTACH_BILLING_DETAILS:
       return {

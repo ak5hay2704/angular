@@ -92,23 +92,23 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  addToCart(cardObj: any) {
+  addToCart(cardObj: Book) {
     this.facade.addToCart(cardObj);
   }
 
-  checkCart(cardObj) {
+  checkCart(cardObj: Book) {
     if (this.cartData.length === 0) return false;
     const flag = this.cartData.filter((item) => item.id === cardObj.id);
     return flag.length > 0;
   }
 
-  checkColItems(cardObj) {
+  checkColItems(cardObj: Book) {
     if (this.colItems.length === 0) return false;
     const flag = this.colItems.filter((item) => item.id === cardObj.id);
     return flag.length > 0;
   }
 
-  navigateToBuy(id) {
+  navigateToBuy(id: string) {
     this.router.navigate(['bill-desk', id]);
   }
 

@@ -15,6 +15,7 @@ import { SearchFacade } from '../../store/search.facade';
 import { CollectionComponent } from './collection.component';
 import { NGXLogger } from 'ngx-logger';
 const collectionsMock = require('../../assets/collectionsMockData.json');
+const bookMock = require('../../assets/bookMock.json');
 
 const facadeMock = {
   myCollections$: of(collectionsMock),
@@ -76,7 +77,7 @@ describe('CollectionComponent', () => {
     [Router],
     (mockRouter: Router) => {
       const navigateSpy = spyOn(mockRouter, 'navigate').and.stub();
-      component.showDetails({ id: 'abcd1234' });
+      component.showDetails(bookMock);
       expect(navigateSpy).toHaveBeenCalled();
       expect(component).toBeTruthy();
     }

@@ -9,6 +9,7 @@ import {
   searchReducer,
 } from './search-reducer';
 const stateMock = require('../../assets/stateMock.json');
+const bookMock = require('../../assets/bookMock.json');
 
 describe('Search Reducer', () => {
   beforeEach(async () => {
@@ -57,7 +58,7 @@ describe('Search Reducer', () => {
   it('should be able to add item to cart', () => {
     const state = searchReducer(
       stateMock,
-      new SearchActions.AddSelectedToCartAction([{ id: 'test12345' }])
+      new SearchActions.AddSelectedToCartAction(bookMock)
     );
     expect(state.cartData).toBeTruthy();
     expect(state.cartData.length).toBe(3);
@@ -104,7 +105,7 @@ describe('Search Reducer', () => {
   it('should be able to add item to the collections', () => {
     const state = searchReducer(
       stateMock,
-      new SearchActions.AddSelectedToCollections('PXa2bby0oQ0C')
+      new SearchActions.AddSelectedToCollections(bookMock)
     );
     expect(state.collections).toBeTruthy();
     expect(state.collections.length).toBe(3);

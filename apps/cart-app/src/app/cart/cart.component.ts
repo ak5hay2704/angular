@@ -38,7 +38,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.router.navigate(['bill-desk', 'checkoutCart']);
   }
 
-  trackByBookId(index: number, cardObj: any) {
+  trackByBookId(index: number, cardObj: Book) {
     return cardObj.id;
   }
 

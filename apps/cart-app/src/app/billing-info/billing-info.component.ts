@@ -14,7 +14,7 @@ import { Book } from '../models/book.model';
   styleUrls: ['./billing-info.component.scss'],
 })
 export class BillingInfoComponent implements OnInit, OnDestroy {
-  id: any;
+  id: string;
   billForm = new FormGroup({
     fName: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),

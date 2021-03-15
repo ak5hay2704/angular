@@ -8,6 +8,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { BookComponent } from './book.component';
 import { tap } from 'rxjs/operators';
+const bookMock = require('../../assets/bookMock.json');
 
 describe('BookComponent', () => {
   let component: BookComponent;
@@ -46,7 +47,7 @@ describe('BookComponent', () => {
   });
 
   it('should emit event when user clicks on a book', () => {
-    component.showDetails({ id: 'test12345' });
+    component.showDetails(bookMock);
     component['bookClick'].pipe(
       tap((data) => {
         expect(data).toBeTruthy();
@@ -55,7 +56,7 @@ describe('BookComponent', () => {
   });
 
   it('should emit event when user wants to delete a book record from cart', () => {
-    component.deleteCartItem({ id: 'test12345' });
+    component.deleteCartItem(bookMock);
     component['deleteItem'].pipe(
       tap((data) => {
         expect(data).toBeTruthy();

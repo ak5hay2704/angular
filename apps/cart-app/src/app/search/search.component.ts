@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.router.navigate(['search', id]);
   }
 
-  trackByBookId(index: number, cardObj: any) {
+  trackByBookId(index: number, cardObj: Book) {
     return cardObj.id;
   }
 
